@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 abstract class HttpClient {
-  static const apiUrl = '192.168.1.69:80';
+  static const apiUrl = '192.168.1.71:80';
   static const headers = {
     'Accept': 'application/json',
   };

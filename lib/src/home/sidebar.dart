@@ -27,6 +27,7 @@ class Sidebar extends StatelessWidget {
       ),
       items: [
         SidebarXItem(icon: Icons.home, label: 'Home', onTap: () => context.pop()),
+        SidebarXItem(icon: Icons.design_services, label: 'Categories', onTap: () => context.pop()),
       ],
     );
   }
