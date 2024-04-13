@@ -9,7 +9,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'package:ebook_app/src/category/category_service.dart';
-import 'package:slugify/slugify.dart';
 
 class CategoryDetail extends StatefulWidget {
   final String? categoryId;
@@ -21,7 +20,7 @@ class CategoryDetail extends StatefulWidget {
 
 class CategoryDetailState extends State<CategoryDetail> {
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _slugController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   Category _category = Category();
 
@@ -34,7 +33,7 @@ class CategoryDetailState extends State<CategoryDetail> {
     _category = Provider.of<CategoryService>(context, listen: false).find(widget.categoryId) ?? Category();
 
     _nameController.value = TextEditingValue(text: _category.name);
-    _slugController.value = TextEditingValue(text: _category.slug);
+    _descriptionController.value = TextEditingValue(text: _category.description);
   }
 
   @override
@@ -65,19 +64,14 @@ class CategoryDetailState extends State<CategoryDetail> {
                 textCapitalization: TextCapitalization.words,
                 textInputAction: TextInputAction.next,
                 decoration: CustomDecoration('Name'),
-                onChanged: (val) {
-                  setState(() {
-                    _slugController.value = TextEditingValue(text: slugify(val));
-                  });
-                },
               ),
               TextFormField(
-                readOnly: true,
-                controller: _slugController,
+                readOnly: _processing,
+                controller: _descriptionController,
                 maxLength: 255,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.none,
-                decoration: CustomDecoration('Slug'),
+                textCapitalization: TextCapitalization.sentences,
+                textInputAction: TextInputAction.done,
+                decoration: CustomDecoration('Description'),
               ),
               const SizedBox(
                 height: 30,
@@ -128,6 +122,7 @@ class CategoryDetailState extends State<CategoryDetail> {
                                 _category
                                     .update({
                                       'name': _nameController.value.text,
+                                      'description': _descriptionController.value.text,
                                     })
                                     .timeout(
                                       const Duration(seconds: 15),

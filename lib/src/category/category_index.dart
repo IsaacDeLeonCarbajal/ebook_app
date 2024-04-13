@@ -1,5 +1,6 @@
 import 'package:ebook_app/app/components/simple_index.dart';
 import 'package:ebook_app/app/components/list_item.dart';
+import 'package:ebook_app/app/support/helper.dart';
 import 'package:ebook_app/src/category/category.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +21,7 @@ class CategoryIndex extends StatelessWidget {
             itemBuilder: (BuildContext context, int index, Category category) {
               return ListItem(
                 title: 'Category ${category.name}',
-                primaryInfo: category.slug,
+                primaryInfo: Helper.limitString(category.description, limit: 50),
                 onTap: () => context.goNamed('categories.details', pathParameters: {'categoryId': category.id ?? ''}),
               );
             },

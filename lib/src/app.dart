@@ -1,3 +1,4 @@
+import 'package:ebook_app/src/category/category_detail.dart';
 import 'package:ebook_app/src/home/container.dart';
 import 'package:ebook_app/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,17 @@ class MyApp extends StatelessWidget {
                     return const Home();
                   },
                   routes: [
+                    // Categories
+                    GoRoute(
+                      path: 'categories/create',
+                      name: 'categories.create',
+                      builder: (BuildContext context, GoRouterState state) => const CategoryDetail(categoryId: null),
+                    ),
+                    GoRoute(
+                      path: 'categories/:categoryId',
+                      name: 'categories.details',
+                      builder: (BuildContext context, GoRouterState state) => CategoryDetail(categoryId: state.pathParameters['categoryId']),
+                    ),
                     // Settings
                     GoRoute(
                       path: 'settings',
