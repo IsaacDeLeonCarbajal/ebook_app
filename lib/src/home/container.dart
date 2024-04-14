@@ -1,3 +1,4 @@
+import 'package:ebook_app/src/book/book_index.dart';
 import 'package:ebook_app/src/category/category_index.dart';
 import 'package:ebook_app/src/home/sidebar.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,10 @@ class _HomeState extends State<Home> {
           style: TextStyle(fontSize: 40),
         ),
       ),
+    },
+    {
+      'title': const Text('Registered Books'),
+      'body': const BookIndex(),
     },
     {
       'title': const Text('Registered Categories'),

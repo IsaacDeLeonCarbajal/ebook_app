@@ -1,3 +1,4 @@
+import 'package:ebook_app/src/book/book.dart';
 import 'package:ebook_app/src/category/category.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -11,6 +12,9 @@ class SqliteService {
       onCreate: (database, version) {
         database.execute(
           'CREATE TABLE IF NOT EXISTS ${Category.modelName}(id INTEGER PRIMARY KEY AUTOINCREMENT, related_id INT NOT NULL UNIQUE, content_data TEXT NOT NULL)',
+        );
+        database.execute(
+          'CREATE TABLE IF NOT EXISTS ${Book.modelName}(id INTEGER PRIMARY KEY AUTOINCREMENT, related_id INT NOT NULL UNIQUE, content_data TEXT NOT NULL)',
         );
       },
       version: 1,

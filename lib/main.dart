@@ -1,3 +1,4 @@
+import 'package:ebook_app/src/book/book_service.dart';
 import 'package:ebook_app/src/category/category_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ void main() async {
   // SettingsView.
   runApp(
     MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => BookService()),
       ChangeNotifierProvider(create: (_) => CategoryService()),
     ], child: MyApp(settingsController: settingsController)),
   );
