@@ -1,3 +1,4 @@
+import 'package:ebook_app/src/book/book_detail.dart';
 import 'package:ebook_app/src/category/category_detail.dart';
 import 'package:ebook_app/src/home/container.dart';
 import 'package:ebook_app/src/settings/settings_view.dart';
@@ -71,6 +72,17 @@ class MyApp extends StatelessWidget {
                     return const Home();
                   },
                   routes: [
+                    // Books
+                    GoRoute(
+                      path: 'books/create',
+                      name: 'books.create',
+                      builder: (BuildContext context, GoRouterState state) => const BookDetail(bookId: null),
+                    ),
+                    GoRoute(
+                      path: 'books/:bookId',
+                      name: 'books.details',
+                      builder: (BuildContext context, GoRouterState state) => BookDetail(bookId: state.pathParameters['bookId']),
+                    ),
                     // Categories
                     GoRoute(
                       path: 'categories/create',
